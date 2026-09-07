@@ -6,6 +6,11 @@ def mask_secret(text: str, keep: int = 4) -> str:
     if keep < 0:
         raise ValueError("mask_secret() expects keep to be non-negative")
 
-    if len(text) <= keep:
-        return "*" * len(text)
-    return "*" * (len(text) - keep) + text[len(text) - keep :]
+    n = len(text)
+    if n <= keep:
+        return "*" * n
+    if n > 2 * keep:
+        visible = max(0, keep - 1)
+        return "*" * (n - visible) + text[n - visible :]
+    visible = n - keep
+    return "*" * visible + text[n - visible :]
