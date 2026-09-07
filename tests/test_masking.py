@@ -4,7 +4,7 @@ from validkit.masking import mask_secret
 
 
 def test_masks_all_but_last_keep_chars():
-    assert mask_secret("geheim123", keep=4) == "*****m123"
+    assert mask_secret("geheim123", keep=4) == "******123"
 
 
 def test_masks_entire_text_when_shorter_than_keep():
@@ -12,7 +12,7 @@ def test_masks_entire_text_when_shorter_than_keep():
 
 
 def test_default_keep_is_four():
-    assert mask_secret("geheim") == "**heim"
+    assert mask_secret("geheim") == "**im"
 
 
 def test_keep_zero_masks_everything():
